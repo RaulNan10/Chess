@@ -1,6 +1,9 @@
 package es.ieslavereda.Chess.model.common;
 
 import java.util.*;
+
+import es.ieslavereda.Chess.tools.Input;
+
 import java.io.Serializable;
 
 public class Juego {
@@ -42,15 +45,30 @@ public class Juego {
 
 	private void movePiece(Jugador player) {
 
-		Coordenada c;
-		Pieza p;
+		Coordenada pieza;
 
 		boolean moved = false;
 
 		do {
+			pieza = Input.getCoordenada("Introduce la coordenada de la pieza que quieres mover");
+			if (board.getCeldaAt(pieza).contienePieza() == true
+					&& board.getCeldaAt(pieza).getPieza().getColor() == turn) {
 
+				comprobarMovimiento(pieza);
+				moved = true;
+			}
 		} while (!moved);
 
+	}
+
+	private void comprobarMovimiento(Coordenada pieza) {
+		Coordenada movimiento;
+		movimiento = Input.getCoordenada("Introduce la coordenada a la que te quieres mover");
+
+		if (board.getCeldaAt(pieza).getPieza().getNextMovements().contains(movimiento)) {
+			board.getCeldaAt(pieza).getPieza().moveTo(movimiento);
+		} else
+			comprobarMovimiento(pieza);
 	}
 
 	public static Coordenada getCoordenada(String msg) {
@@ -83,7 +101,7 @@ public class Juego {
 		System.out.println(msg);
 		return sc.next();
 	}
-	
+
 	public static int getInt(String msg) {
 		int salida = 0;
 		boolean error = true;
