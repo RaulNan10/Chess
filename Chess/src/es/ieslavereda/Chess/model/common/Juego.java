@@ -29,11 +29,16 @@ public class Juego {
 		do {
 			switch (turn) {
 			case WHITE:
+				System.out.println(board.print(Color.WHITE));
 				movePiece(white);
-				break;
+				check(Color.BLACK);
+				cambiarTurno();
+
 			case BLACK:
+				System.out.println(board.print(Color.BLACK));
 				movePiece(black);
-				break;
+				check(Color.WHITE);
+				cambiarTurno();
 			}
 		} while (board.blackKingIsAlive() && board.whiteKingIsAlive());
 
@@ -57,18 +62,20 @@ public class Juego {
 				comprobarMovimiento(pieza);
 				moved = true;
 			}
-		} while (!moved);
+		} while (moved == false);
 
 	}
 
-	private void comprobarMovimiento(Coordenada pieza) {
+	private void comprobarMovimiento(Coordenada coordenadaPieza) {
 		Coordenada movimiento;
+
 		movimiento = Input.getCoordenada("Introduce la coordenada a la que te quieres mover");
 
-		if (board.getCeldaAt(pieza).getPieza().getNextMovements().contains(movimiento)) {
-			board.getCeldaAt(pieza).getPieza().moveTo(movimiento);
+		if (board.getCeldaAt(coordenadaPieza).getPieza().getNextMovements().contains(movimiento)) {
+			board.getCeldaAt(coordenadaPieza).getPieza().moveTo(movimiento);
+
 		} else
-			comprobarMovimiento(pieza);
+			comprobarMovimiento(coordenadaPieza);
 	}
 
 	public static Coordenada getCoordenada(String msg) {
@@ -94,6 +101,37 @@ public class Juego {
 		} while (c == null);
 
 		return c;
+	}
+
+	public boolean check(Color c) {
+		Nodo<Pieza> aux = new Nodo(null);
+		Lista<Coordenada> l = new Lista();
+		if (c == Color.WHITE) {
+			while (aux != null) {
+
+				aux = board.getBlancas().getNodo();
+				l.addAll(aux.getInfo().getNextMovements());
+				aux = aux.getSiguiente();
+
+			}
+
+			if (l.contains(board.getWhiteKing().posicion)) {
+				System.out.println("Jaque al blanco");
+				return true;
+			} else
+				return false;
+		} else {
+			while (aux != null) {
+				aux = board.getNegras().getNodo();
+				l.addAll(aux.getInfo().getNextMovements());
+				aux = aux.getSiguiente();
+			}
+			if (l.contains(board.getBlackKing().posicion)) {
+				System.out.println("Jaque al negro");
+				return true;
+			} else
+				return false;
+		}
 	}
 
 	public static String getString(String msg) {

@@ -30,11 +30,11 @@ public class Tablero {
 
 		blancas.addHead(new Rook(Color.WHITE, new Coordenada('A', 1), this));
 		blancas.addHead(new Knight(Color.WHITE, new Coordenada('B', 1), this));
-		blancas.addHead(new Bishop(Color.WHITE, new Coordenada('C', 3), this));
+		blancas.addHead(new Bishop(Color.WHITE, new Coordenada('C', 1), this));
 		blancas.addHead(new Queen(Color.WHITE, new Coordenada('D', 1), this));
 		blancas.addHead(new King(Color.WHITE, new Coordenada('E', 1), this));
 		blancas.addHead(new Bishop(Color.WHITE, new Coordenada('F', 1), this));
-		blancas.addHead(new Knight(Color.WHITE, new Coordenada('F', 5), this));
+		blancas.addHead(new Knight(Color.WHITE, new Coordenada('G', 1), this));
 		blancas.addHead(new Rook(Color.WHITE, new Coordenada('H', 1), this));
 
 		negras.addHead(new Rook(Color.BLACK, new Coordenada('A', 8), this));
@@ -51,7 +51,7 @@ public class Tablero {
 			new Pawn(Color.BLACK, new Coordenada((char) ('A' + i), 7), this);
 		}
 
-		new Pawn(Color.BLACK, new Coordenada((char) ('D'), 4), this);
+		blancas.addHead(new Pawn(Color.WHITE, new Coordenada('A', 6), this));
 	}
 
 	public boolean contiene(Coordenada c) {
@@ -104,7 +104,7 @@ public class Tablero {
 		String salida = "           H   G   F   E   D   C   B   A\n";
 
 		salida += obtenerParteSuperior();
-
+		
 		for (int fila = tablero.length - 1; fila > 0; fila--) {
 			salida += obtenerParteFichaNegra(fila);
 			salida += obtenerParteDivisoria();
@@ -180,5 +180,15 @@ public class Tablero {
 	public boolean whiteKingIsAlive() {
 		return blancas.contains(whiteKing);
 	}
+	
+	public Pieza getBlackKing() {
+		return blackKing;
+	}
+	
+	public Pieza getWhiteKing() {
+		return whiteKing;
+	}
+	
+
 
 }

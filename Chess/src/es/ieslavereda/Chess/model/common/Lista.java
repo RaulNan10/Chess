@@ -48,6 +48,10 @@ public class Lista<T> {
 
 		return this;
 
+		
+	}
+	public Nodo<T> getNodo(){
+		return cabeza;
 	}
 
 	public void addTail(T info) {
@@ -204,5 +208,7 @@ public class Lista<T> {
 
 		return contiene;
 	}
+	
+
 
 }

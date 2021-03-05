@@ -16,9 +16,10 @@ public class Pawn extends Pieza {
 	public Lista<Coordenada> getNextMovements() {
 		Lista<Coordenada> lista = new Lista();
 		if (getColor() == Color.WHITE) {
-			addCoordenada(posicion.up(), lista);
+			
 			if (posicion.getRow() == 2) {
 				addCoordenada(posicion.up().up(), lista);
+				addCoordenada(posicion.up(), lista);
 			}
 			if (comprobarDiagonal(posicion.diagonalUpLeft())) {
 				addCoordenada(posicion.diagonalUpLeft(), lista);
@@ -28,9 +29,10 @@ public class Pawn extends Pieza {
 				addCoordenada(posicion.diagonalUpRight(), lista);
 			}
 		} else {
-			addCoordenada(posicion.down(), lista);
+			
 			if (posicion.getRow() == 7) {
 				addCoordenada(posicion.down().down(), lista);
+				addCoordenada(posicion.down(), lista);
 			}
 			if (comprobarDiagonal(posicion.diagonalDownLeft())) {
 				addCoordenada(posicion.diagonalDownLeft(), lista);

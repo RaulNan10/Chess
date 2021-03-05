@@ -37,5 +37,12 @@ public class King extends Pieza {
 			}
 		}
 	}
+	
+	public Coordenada kingCoordenada(Color c) {
+		if(c==this.getColor()) {
+			return posicion;
+		}else 
+			return null;
+	}
 
 }

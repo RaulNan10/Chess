@@ -37,7 +37,7 @@ public class Player implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Player [name=" + name + ", socket=" + socket + ", oos=" + oos + ", ois=" + ois + ", ip=" + ip
+		return "Player [name=" + name + ", socket=" +oos + ", ois=" + ois + ", ip=" + ip
 				+ ", color=" + color + "]";
 	}
 	
