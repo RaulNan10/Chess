@@ -2,6 +2,12 @@ package es.ieslavereda.Chess.model.common;
 
 import java.io.Serializable;
 
+/**
+ * Esta clase crea un jugador con un nombre para la partida
+ * 
+ * @author RAUL
+ *
+ */
 public class Jugador implements Serializable {
 
 	private String name;

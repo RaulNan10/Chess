@@ -1,5 +1,12 @@
 package es.ieslavereda.Chess.model.common;
 
+/**
+ * Crea la clase lista, que tiene un tamaño, una cabeza, y una cola
+ * 
+ * @author RAUL
+ *
+ * @param <T>
+ */
 public class Lista<T> {
 
 	private int size;
@@ -22,6 +29,11 @@ public class Lista<T> {
 		return size == 0;
 	}
 
+	/**
+	 * Añade un elemento a la lista y lo define como nueva cabeza
+	 * 
+	 * @param info
+	 */
 	public void addHead(T info) {
 
 		Nodo<T> nodo = new Nodo<T>(info);
@@ -38,6 +50,13 @@ public class Lista<T> {
 		size++;
 	}
 
+	/**
+	 * Añade todos los elementos de una lista a una nueva
+	 * 
+	 * @param lista Lista de la cual hay que añadir su informacion a la nueva lista
+	 * @return Lista nueva con toda la informacion (nodos no) de la lista pasada por
+	 *         parametro
+	 */
 	public Lista<T> addAll(Lista<T> lista) {
 
 		Nodo<T> aux = lista.cabeza;
@@ -48,12 +67,22 @@ public class Lista<T> {
 
 		return this;
 
-		
 	}
-	public Nodo<T> getNodo(){
+
+	/**
+	 * Devuelve el nodo de la cabeza
+	 * 
+	 * @return
+	 */
+	public Nodo<T> getNodo() {
 		return cabeza;
 	}
 
+	/**
+	 * Añade un elemento a la lista y lo define como cola
+	 * 
+	 * @param info
+	 */
 	public void addTail(T info) {
 
 		Nodo<T> aux = new Nodo<T>(info);
@@ -69,6 +98,11 @@ public class Lista<T> {
 		size++;
 	}
 
+	/**
+	 * Devuelve solo el valor de la cabeza y lo elimina de la lista
+	 * 
+	 * @return La informacion del nodo
+	 */
 	public T getHead() {
 		T valor = null;
 
@@ -91,6 +125,11 @@ public class Lista<T> {
 		return valor;
 	}
 
+	/**
+	 * Devuelve solo el valor de la cola y lo elimina de la lista
+	 * 
+	 * @return
+	 */
 	public T getTail() {
 		T valor = null;
 
@@ -112,6 +151,12 @@ public class Lista<T> {
 
 	}
 
+	/**
+	 * Busca un elemento en la lista
+	 * 
+	 * @param info Elemento a buscar
+	 * @return -1 si este elemento no esta en la lista y 0 si lo esta
+	 */
 	public int search(T info) {
 
 		int posicion = -1;
@@ -129,6 +174,12 @@ public class Lista<T> {
 		return posicion;
 	}
 
+	/**
+	 * Devuelve la informacion de una posicion y la elimina de la lista
+	 * 
+	 * @param index Posicion a buscar
+	 * @return La informacion
+	 */
 	public T get(int index) {
 
 		if (index == 0)
@@ -154,6 +205,12 @@ public class Lista<T> {
 			return null;
 	}
 
+	/**
+	 * Busca un elemento en la lista lo devuelve y lo elimina
+	 * 
+	 * @param elemento Elemento a buscar
+	 * @return El valor del elemento
+	 */
 	public T getAndRemove(T elemento) {
 
 		if (elemento.equals(cabeza))
@@ -197,6 +254,7 @@ public class Lista<T> {
 
 		return salida;
 	}
+
 	public boolean contains(T elemento) {
 		boolean contiene = false;
 		Nodo<T> nodo = cabeza;
@@ -208,7 +266,5 @@ public class Lista<T> {
 
 		return contiene;
 	}
-	
-
 
 }

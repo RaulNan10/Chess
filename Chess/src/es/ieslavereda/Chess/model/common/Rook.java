@@ -1,5 +1,12 @@
 package es.ieslavereda.Chess.model.common;
 
+/**
+ * Crea la clase de la pieza torre. Que tiene un color, una coordenada y un
+ * tablero
+ * 
+ * @author RAUL
+ *
+ */
 public class Rook extends Pieza {
 
 	public Rook(Color color, Coordenada posicion, Tablero tablero) {
@@ -13,19 +20,25 @@ public class Rook extends Pieza {
 
 	}
 
+	/**
+	 * Llama al metodo de abajo
+	 */
 	@Override
 	public Lista<Coordenada> getNextMovements() {
 
 		return getNextMovements(this);
 	}
 
+	/**
+	 * Añade a una lista todos los movimientos que son posibles para la pieza y
+	 * devuelve la lista
+	 */
 	public static Lista<Coordenada> getNextMovements(Pieza p) {
 
 		Tablero t = p.tablero;
 		Lista<Coordenada> lista = new Lista<>();
 		Coordenada c;
 
-		// UP
 		c = p.posicion.up();
 		while (t.contiene(c) && t.getPiezaAt(c) == null) {
 			lista.addHead(c);
@@ -34,7 +47,6 @@ public class Rook extends Pieza {
 		if (t.contiene(c) && t.getPiezaAt(c).getColor() != p.getColor())
 			lista.addHead(c);
 
-		// Right
 		c = p.posicion.right();
 		while (t.contiene(c) && t.getPiezaAt(c) == null) {
 			lista.addHead(c);
@@ -42,7 +54,6 @@ public class Rook extends Pieza {
 		}
 		if (t.contiene(c) && t.getPiezaAt(c).getColor() != p.getColor())
 			lista.addHead(c);
-		// Down
 		c = p.posicion.down();
 		while (t.contiene(c) && t.getPiezaAt(c) == null) {
 			lista.addHead(c);
@@ -50,7 +61,6 @@ public class Rook extends Pieza {
 		}
 		if (t.contiene(c) && t.getPiezaAt(c).getColor() != p.getColor())
 			lista.addHead(c);
-		// Left
 		c = p.posicion.left();
 		while (t.contiene(c) && t.getPiezaAt(c) == null) {
 			lista.addHead(c);

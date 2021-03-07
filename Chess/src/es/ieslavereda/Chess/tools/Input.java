@@ -4,6 +4,12 @@ import java.util.Scanner;
 
 import es.ieslavereda.Chess.model.common.Coordenada;
 
+/**
+ * Esta clase se ocupa de los mensajes que se muestran por pantalla
+ * 
+ * @author RAUL
+ *
+ */
 public class Input {
 
 	public static String getString(String msg) {
@@ -29,6 +35,12 @@ public class Input {
 
 	}
 
+	/**
+	 * Comprueba que los valores de entrada es valida como coordenada
+	 * 
+	 * @param msg Mensaje que se puede mostrar por pantalla
+	 * @return La coordenada
+	 */
 	public static Coordenada getCoordenada(String msg) {
 		Coordenada c = null;
 		String texto;

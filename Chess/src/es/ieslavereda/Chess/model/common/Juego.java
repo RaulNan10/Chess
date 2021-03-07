@@ -4,8 +4,13 @@ import java.util.*;
 
 import es.ieslavereda.Chess.tools.Input;
 
-import java.io.Serializable;
-
+/**
+ * Aqui se crea la clase juego, que consta de 2 jugador para cada color, un
+ * tablero y una variable turno para definir quien mueve pieza
+ * 
+ * @author RAUL
+ *
+ */
 public class Juego {
 
 	private Jugador white;
@@ -21,23 +26,36 @@ public class Juego {
 
 	}
 
+	/**
+	 * Cambia el turno de la partida
+	 */
 	private void cambiarTurno() {
 		turn = Color.values()[(turn.ordinal() + 1) % Color.values().length];
 	}
 
+	/**
+	 * Este método es el que llama a los demás métodos para que la partida avance
+	 */
 	public void start() {
 		do {
 			switch (turn) {
 			case WHITE:
 				System.out.println(board.print(Color.WHITE));
+				compruebaJaque(Color.WHITE);
+				if (compruebaJaque(Color.WHITE) == true) {
+					System.out.println("¡Estás en jaque!");
+				}
 				movePiece(white);
-				check(Color.BLACK);
 				cambiarTurno();
 
 			case BLACK:
 				System.out.println(board.print(Color.BLACK));
+				compruebaJaque(Color.BLACK);
+				if (compruebaJaque(Color.BLACK) == true) {
+					System.out.println("¡Estás en jaque!");
+				}
+
 				movePiece(black);
-				check(Color.WHITE);
 				cambiarTurno();
 			}
 		} while (board.blackKingIsAlive() && board.whiteKingIsAlive());
@@ -48,6 +66,11 @@ public class Juego {
 			System.out.println("WHITE WINS");
 	}
 
+	/**
+	 * Este método se encarga de realizar los movimientos de un jugador
+	 * 
+	 * @param player El jugador que tiene que mover pieza
+	 */
 	private void movePiece(Jugador player) {
 
 		Coordenada pieza;
@@ -66,6 +89,11 @@ public class Juego {
 
 	}
 
+	/**
+	 * Comprueba que la coordenada de movimiento que introduce el jugador es posible
+	 * 
+	 * @param coordenadaPieza Coordenada
+	 */
 	private void comprobarMovimiento(Coordenada coordenadaPieza) {
 		Coordenada movimiento;
 
@@ -78,6 +106,12 @@ public class Juego {
 			comprobarMovimiento(coordenadaPieza);
 	}
 
+	/**
+	 * Pide al usuario que introduzca una coordenada
+	 * 
+	 * @param msg Mensaje que se puede mostrar por pantalla
+	 * @return La coordenada introducida por el usuario
+	 */
 	public static Coordenada getCoordenada(String msg) {
 		Coordenada c = null;
 		String texto;
@@ -103,35 +137,51 @@ public class Juego {
 		return c;
 	}
 
-	public boolean check(Color c) {
-		Nodo<Pieza> aux = new Nodo(null);
-		Lista<Coordenada> l = new Lista();
-		if (c == Color.WHITE) {
-			while (aux != null) {
-
-				aux = board.getBlancas().getNodo();
-				l.addAll(aux.getInfo().getNextMovements());
-				aux = aux.getSiguiente();
-
-			}
-
-			if (l.contains(board.getWhiteKing().posicion)) {
-				System.out.println("Jaque al blanco");
+	/**
+	 * Comprueba si hay jaque
+	 * 
+	 * @param color Color del cual hay que comprobar si el rey esta en jaque
+	 * @return True si hay jaque para el rey de ese color, false si no lo hay
+	 */
+	private boolean compruebaJaque(Color color) {
+		Lista<Coordenada> movements = new Lista<Coordenada>();
+		if (color == Color.BLACK) {
+			movements = getColorMoves(Color.WHITE);
+			if (movements.contains(board.getBlackKing().getPosicion())) {
 				return true;
-			} else
-				return false;
+			}
 		} else {
+			movements = getColorMoves(Color.BLACK);
+			if (movements.contains(board.getWhiteKing().getPosicion())) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Almacena los movimientos de las piezas de color pasado por parámetro
+	 * 
+	 * @param color Color de las piezas de las que comprobaremos sus movimientos
+	 * @return lista Lista con los movimientos de las piezas
+	 */
+	private Lista<Coordenada> getColorMoves(Color color) {
+		Lista<Coordenada> lista = new Lista<Coordenada>();
+		if (color == Color.BLACK) {
+			Nodo<Pieza> aux = board.getNegras().getNodo();
 			while (aux != null) {
-				aux = board.getNegras().getNodo();
-				l.addAll(aux.getInfo().getNextMovements());
+				lista.addAll(aux.getInfo().getNextMovements());
 				aux = aux.getSiguiente();
 			}
-			if (l.contains(board.getBlackKing().posicion)) {
-				System.out.println("Jaque al negro");
-				return true;
-			} else
-				return false;
 		}
+		if (color == Color.WHITE) {
+			Nodo<Pieza> aux = board.getBlancas().getNodo();
+			while (aux != null) {
+				lista.addAll(aux.getInfo().getNextMovements());
+				aux = aux.getSiguiente();
+			}
+		}
+		return lista;
 	}
 
 	public static String getString(String msg) {
@@ -140,6 +190,12 @@ public class Juego {
 		return sc.next();
 	}
 
+	/**
+	 * Comprueba que el numero de la coordenada es correcto
+	 * 
+	 * @param msg String del cual hay que extraer el numero
+	 * @return Devuelve el numero de la coordenada
+	 */
 	public static int getInt(String msg) {
 		int salida = 0;
 		boolean error = true;

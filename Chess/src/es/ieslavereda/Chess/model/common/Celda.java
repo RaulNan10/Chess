@@ -1,6 +1,10 @@
 
 package es.ieslavereda.Chess.model.common;
-
+/**
+ * Una celda es una coordenada del tablero
+ * @author RAUL
+ *
+ */
 public class Celda {
 	
 	private Pieza pieza;
