@@ -1,7 +1,7 @@
 package es.ieslavereda.Chess.model.common;
 
 /**
- * Crea la clase lista, que tiene un tamaño, una cabeza, y una cola
+ * Crea la clase lista, que tiene un tamaÃ±o, una cabeza, y una cola
  * 
  * @author RAUL
  *
@@ -30,7 +30,7 @@ public class Lista<T> {
 	}
 
 	/**
-	 * Añade un elemento a la lista y lo define como nueva cabeza
+	 * AÃ±ade un elemento a la lista y lo define como nueva cabeza
 	 * 
 	 * @param info
 	 */
@@ -51,9 +51,9 @@ public class Lista<T> {
 	}
 
 	/**
-	 * Añade todos los elementos de una lista a una nueva
+	 * Anyade todos los elementos de una lista a una nueva
 	 * 
-	 * @param lista Lista de la cual hay que añadir su informacion a la nueva lista
+	 * @param lista Lista de la cual hay que anyadir su informacion a la nueva lista
 	 * @return Lista nueva con toda la informacion (nodos no) de la lista pasada por
 	 *         parametro
 	 */
@@ -79,7 +79,7 @@ public class Lista<T> {
 	}
 
 	/**
-	 * Añade un elemento a la lista y lo define como cola
+	 * Anyade un elemento a la lista y lo define como cola
 	 * 
 	 * @param info
 	 */

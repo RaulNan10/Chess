@@ -63,7 +63,6 @@ public class Tablero {
 			new Pawn(Color.BLACK, new Coordenada((char) ('A' + i), 7), this);
 		}
 
-		blancas.addHead(new Pawn(Color.WHITE, new Coordenada('A', 6), this));
 	}
 
 	/**
@@ -188,7 +187,7 @@ public class Tablero {
 	 */
 	private String obtenerParteSuperior() {
 
-		return "         â•”â•�â•�â•�â•¤â•�â•�â•�â•¤â•�â•�â•�â•¤â•�â•�â•�â•¤â•�â•�â•�â•¤â•�â•�â•�â•¤â•�â•�â•�â•¤â•�â•�â•�â•—\n";
+		return "         ╔═══╤═══╤═══╤═══╤═══╤═══╤═══╤═══╗\n";
 	}
 
 	/**
@@ -199,13 +198,13 @@ public class Tablero {
 	 */
 	private String obtenerParteFichaNegra(int fila) {
 		// String I = "\u2502";
-		String salida = "       " + (8 - fila) + " â•‘";
+		String salida = "       " + (8 - fila) + " ║";
 
 		for (int col = tablero[0].length - 1; col > 0; col--) {
-			salida = salida + " " + tablero[fila][col] + " â”‚";
+			salida = salida + " " + tablero[fila][col] + " │";
 		}
 
-		salida = salida + " " + tablero[fila][0] + " â•‘ " + (8 - fila) + "\n";
+		salida = salida + " " + tablero[fila][0] + " │" + (8 - fila) + "\n";
 
 		return salida;
 	}
@@ -218,13 +217,13 @@ public class Tablero {
 	 */
 	private String obtenerParteFichaBlanca(int fila) {
 		// String I = "\u2502";
-		String salida = "       " + (8 - fila) + " â•‘";
+		String salida = "       " + (8 - fila) + " ║";
 
 		for (int col = 0; col < tablero[0].length - 1; col++) {
-			salida = salida + " " + tablero[fila][col] + " â”‚";
+			salida = salida + " " + tablero[fila][col] + " │";
 		}
 
-		salida = salida + " " + tablero[fila][tablero[0].length - 1] + " â•‘ " + (8 - fila) + "\n";
+		salida = salida + " " + tablero[fila][tablero[0].length - 1] + " ║" + (8 - fila) + "\n";
 
 		return salida;
 	}
@@ -235,7 +234,7 @@ public class Tablero {
 	 */
 	private String obtenerParteDivisoria() {
 
-		return "         â•Ÿâ”€â”€â”€â”¼â”€â”€â”€â”¼â”€â”€â”€â”¼â”€â”€â”€â”¼â”€â”€â”€â”¼â”€â”€â”€â”¼â”€â”€â”€â”¼â”€â”€â”€â•¢ \n";
+		return "         ╟───┼───┼───┼───┼───┼───┼───┼───╢\n";
 	}
 
 	/**
@@ -244,7 +243,7 @@ public class Tablero {
 	 */
 	private String obtenerParteInferior() {
 
-		return "         â•šâ•�â•�â•�â•§â•�â•�â•�â•§â•�â•�â•�â•§â•�â•�â•�â•§â•�â•�â•�â•§â•�â•�â•�â•§â•�â•�â•�â•§â•�â•�â•�â•�\n";
+		return "         ╚═══╧═══╧═══╧═══╧═══╧═══╧═══╧═══╝\n";
 	}
 
 	/**

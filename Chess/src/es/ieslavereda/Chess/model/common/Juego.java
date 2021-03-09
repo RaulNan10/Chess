@@ -34,7 +34,7 @@ public class Juego {
 	}
 
 	/**
-	 * Este método es el que llama a los demás métodos para que la partida avance
+	 * Este metodo es el que llama a los demas metodos para que la partida avance
 	 */
 	public void start() {
 		do {
@@ -43,7 +43,7 @@ public class Juego {
 				System.out.println(board.print(Color.WHITE));
 				compruebaJaque(Color.WHITE);
 				if (compruebaJaque(Color.WHITE) == true) {
-					System.out.println("¡Estás en jaque!");
+					System.out.println("Estas en jaque!");
 				}
 				movePiece(white);
 				cambiarTurno();
@@ -52,7 +52,7 @@ public class Juego {
 				System.out.println(board.print(Color.BLACK));
 				compruebaJaque(Color.BLACK);
 				if (compruebaJaque(Color.BLACK) == true) {
-					System.out.println("¡Estás en jaque!");
+					System.out.println("Estas en jaque!");
 				}
 
 				movePiece(black);
@@ -67,7 +67,7 @@ public class Juego {
 	}
 
 	/**
-	 * Este método se encarga de realizar los movimientos de un jugador
+	 * Este metodo se encarga de realizar los movimientos de un jugador
 	 * 
 	 * @param player El jugador que tiene que mover pieza
 	 */
@@ -160,7 +160,7 @@ public class Juego {
 	}
 
 	/**
-	 * Almacena los movimientos de las piezas de color pasado por parámetro
+	 * Almacena los movimientos de las piezas de color pasado por parametro
 	 * 
 	 * @param color Color de las piezas de las que comprobaremos sus movimientos
 	 * @return lista Lista con los movimientos de las piezas

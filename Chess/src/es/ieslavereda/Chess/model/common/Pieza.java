@@ -1,7 +1,7 @@
 package es.ieslavereda.Chess.model.common;
 
 /**
- * Crea la clase pieza, de la cual heredarán todas las piezas que forman la
+ * Crea la clase pieza, de la cual heredaran todas las piezas que forman la
  * partida. Tiene un tipo, un tablero y una posicion
  * 
  * @author RAUL
